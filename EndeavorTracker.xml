@@ -1,0 +1,88 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<!--<Script file="Rested.lua"/> -->
+	<!-- Version 2.0 -->
+
+	<StatusBar name="EndeavorBarTemplate" inherits="TextStatusBar" virtual="true">
+		<Size x="316" y="12"/>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar" />
+		<BarColor r="0.0" g="0.3" b="0.9" />
+	</StatusBar>
+	<FontString name="EndeavorBarTextTemplate" inherits="GameFontNormalSmall" virtual="true">
+		<Color r="1" g="1" b="1" />
+	</FontString>
+
+	<Frame name="EndeavorFrame" toplevel="false" parent="UIParent" enableMouse="true" movable="true" resizable="true">
+		<Size x="316" y="125"/>
+		<ResizeBounds>
+			<minResize x="316" y="40"/>
+			<maxResize x="316" y="773"/>
+		</ResizeBounds>
+		<Anchors>
+			<Anchor point="LEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture setAllPoints="true">
+					<Color r="0.0" g="0.0" b="0.0"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_TitleText" inherits="GameFontHighlight" text="Endeavor Tracker">
+					<Size>
+						<AbsDimension x="250" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentClose" inherits="UIPanelCloseButton">
+				<Anchors><Anchor point="TOPRIGHT" x="0" y="0"/></Anchors>
+				<Scripts>
+					<OnClick>self:GetParent():Hide()</OnClick>
+				</Scripts>
+			</Button>
+			<StatusBar name="$parentBar0" inherits="EndeavorBarTemplate">
+				<Anchors>
+					<Anchor point="LEFT"/>
+					<Anchor point="TOP" relativeTo="$parentClose" relativePoint="BOTTOM"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentBarText0" inherits="EndeavorBarTextTemplate" parentKey="text">
+							<Anchors>
+								<Anchor point="LEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</StatusBar>
+				<Button name="$parentResizeButton">
+					<Size x="16" y="16"/>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT"/>
+						</Anchors>
+						<NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
+						<HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
+						<PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
+						<Scripts>
+							<OnMouseDown>self:GetParent():StartSizing("BOTTOMRIGHT")</OnMouseDown>
+							<OnMouseUp>self:GetParent():StopMovingOrSizing()</OnMouseUp>
+						</Scripts>
+				</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ET.OnLoad()</OnLoad>
+			<OnEvent>ET[event]( ... )</OnEvent>
+			<OnMouseDown>ET.OnDragStart()</OnMouseDown>
+			<OnMouseUp>ET.OnDragStop()</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

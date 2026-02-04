@@ -1,0 +1,10 @@
+## Title: EndeavorTracker
+## Interface: 120000
+## Notes: Track your favorite Endeavors (0.1.0-beta7)
+## Author: opussf
+## Version: 0.1.0-beta7
+## Description: Track your favorite Endeavors
+## SavedVariables: Endeavor_data
+
+EndeavorTracker.lua
+EndeavorTracker.xml
