@@ -1,6 +1,8 @@
 ET_SLUG, ET = ...
 
 -- Saved Variables
+Endeavor_data = {}
+
 ET.myTasks = {}
 ET.displayData = {}
 
