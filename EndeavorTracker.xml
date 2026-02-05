@@ -49,7 +49,8 @@
 					<OnClick>self:GetParent():Hide()</OnClick>
 				</Scripts>
 			</Button>
-			<StatusBar name="$parentBar0" inherits="EndeavorBarTemplate">
+			<StatusBar name="$parentBar0Top" inherits="EndeavorBarTemplate">
+				<BarColor r="0.5" g="0.5" b="0"/>
 				<Anchors>
 					<Anchor point="LEFT"/>
 					<Anchor point="TOP" relativeTo="$parentClose" relativePoint="BOTTOM"/>
@@ -63,20 +64,32 @@
 						</FontString>
 					</Layer>
 				</Layers>
+				<Scripts>
+					<OnLoad>self:SetFrameLevel(2)</OnLoad>
+				</Scripts>
 			</StatusBar>
-				<Button name="$parentResizeButton">
-					<Size x="16" y="16"/>
-						<Anchors>
-							<Anchor point="BOTTOMRIGHT"/>
-						</Anchors>
-						<NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
-						<HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
-						<PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
-						<Scripts>
-							<OnMouseDown>self:GetParent():StartSizing("BOTTOMRIGHT")</OnMouseDown>
-							<OnMouseUp>self:GetParent():StopMovingOrSizing()</OnMouseUp>
-						</Scripts>
-				</Button>
+			<StatusBar name="$parentBar0" inherits="EndeavorBarTemplate">
+				<Anchors>
+					<Anchor point="LEFT"/>
+					<Anchor point="TOP" relativeTo="$parentClose" relativePoint="BOTTOM"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>self:SetFrameLevel(1)</OnLoad>
+				</Scripts>
+			</StatusBar>
+			<Button name="$parentResizeButton">
+				<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
+					<HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
+					<PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
+					<Scripts>
+						<OnMouseDown>self:GetParent():StartSizing("BOTTOMRIGHT")</OnMouseDown>
+						<OnMouseUp>self:GetParent():StopMovingOrSizing()</OnMouseUp>
+					</Scripts>
+			</Button>
 		</Frames>
 		<Scripts>
 			<OnLoad>ET.OnLoad()</OnLoad>
