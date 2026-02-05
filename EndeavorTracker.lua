@@ -110,7 +110,6 @@ function ET.INITIATIVE_TASKS_TRACKED_LIST_CHANGED( initiativeTaskID, added )
 
 	if not added and ET.myTasks[initiativeTaskID] then
 		C_Timer.After(0.25, function()
-			print("Remove "..initiativeTaskID.."?")
 			if ET.myTasks[initiativeTaskID].completed then
 				C_NeighborhoodInitiative.AddTrackedInitiativeTask(initiativeTaskID)
 				ET.myTasks[initiativeTaskID].completed = nil
@@ -122,7 +121,6 @@ function ET.INITIATIVE_TASKS_TRACKED_LIST_CHANGED( initiativeTaskID, added )
 						ET.displayData[idx] = nil
 					end
 				end
-				print("YES!")
 				ET.BuildBars()
 				ET.UpdateBars()
 			end
