@@ -142,7 +142,7 @@ function ET.INITIATIVE_TASKS_TRACKED_UPDATED()
 	end
 	for ID, task in pairs(ET.myTasks) do
 		local taskInfo = C_NeighborhoodInitiative.GetInitiativeTaskInfo(ID)
-		if task.requirementText ~= taskInfo.requirementsList[1].requirementText then
+		if taskInfo and task.requirementText ~= taskInfo.requirementsList[1].requirementText then
 			-- ID matches, requirementText does not.  Progress!
 			task.requirementText = taskInfo.requirementsList[1].requirementText
 			ET.ParseRequirement(task)
@@ -297,15 +297,33 @@ function ET.BarMenuGenerator(owner, rootDescription)
 	if owner.taskID then
 		rootDescription:CreateButton("Untrack "..ET.myTasks[owner.taskID].taskName, function()
 				C_NeighborhoodInitiative.RemoveTrackedInitiativeTask(owner.taskID)
+				ET.NEIGHBORHOOD_INITIATIVE_UPDATED()
 			end)
 		rootDescription:CreateDivider()
 	end
+	-- Add items
+	local sortedTasks = {}
 	for _, task in pairs( ET.NeighborhoodInitiativeInfo.tasks ) do
 		if not task.tracked then
-			rootDescription:CreateButton("Track ("..task.progressContributionAmount..") "..task.taskName, function()
-					C_NeighborhoodInitiative.AddTrackedInitiativeTask(task.ID)
-				end)
+			sortedTasks[#sortedTasks+1] = {
+					progressContributionAmount = task.progressContributionAmount,
+					taskName = task.taskName,
+					ID = task.ID}
 		end
+	end
+	table.sort( sortedTasks, function(l, r)
+		if l.progressContributionAmount > r.progressContributionAmount then
+			return true
+		elseif l.progressContributionAmount == r.progressContributionAmount then
+			return l.taskName < r.taskName
+		end
+		return false
+	end)
+	for _, task in pairs( sortedTasks ) do
+		rootDescription:CreateButton("Track ("..task.progressContributionAmount..") "..task.taskName, function()
+				C_NeighborhoodInitiative.AddTrackedInitiativeTask(task.ID)
+				ET.NEIGHBORHOOD_INITIATIVE_UPDATED()
+			end)
 	end
 end
 function ET.Print(msg)
