@@ -36,13 +36,16 @@ function ET.UpdateBars()
 		ET.displayData[newIndex].ID = ID
 	end
 
-	table.sort( ET.displayData, function(l, r)
-		if l.progressContributionAmount > r.progressContributionAmount then
-			return true
-		elseif l.progressContributionAmount == r.progressContributionAmount then
-			return l.ID < r.ID
-		end
-		return false
+	table.sort(ET.displayData, function(l, r)
+	    if l.progressContributionAmount ~= r.progressContributionAmount then
+	        return l.progressContributionAmount > r.progressContributionAmount
+	    end
+	    local lRatio = l.goal ~= 0 and l.progress / l.goal or 0
+	    local rRatio = r.goal ~= 0 and r.progress / r.goal or 0
+	    if lRatio ~= rRatio then
+	        return lRatio > rRatio
+	    end
+	    return l.ID < r.ID
 	end)
 
 	for idx, barLine in pairs(ET.bars) do

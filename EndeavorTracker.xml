@@ -15,7 +15,7 @@
 		<Color r="1" g="1" b="1" />
 	</FontString>
 
-	<Frame name="EndeavorFrame" toplevel="false" parent="UIParent" enableMouse="true" movable="true" resizable="true">
+	<Frame name="EndeavorFrame" toplevel="false" parent="UIParent" enableMouse="true" movable="true" resizable="true" hidden="true"	>
 		<Size x="250" y="40"/>
 		<ResizeBounds>
 			<minResize x="250" y="40"/>
