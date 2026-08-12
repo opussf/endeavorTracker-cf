@@ -1,8 +1,8 @@
 ## Title: EndeavorTracker
-## Interface: 120005
-## Notes: Track your favorite Endeavors (1.2.2)
+## Interface: 120100
+## Notes: Track your favorite Endeavors (1.2.3)
 ## Author: opussf
-## Version: 1.2.2
+## Version: 1.2.3
 ## Description: Track your favorite Endeavors
 ## SavedVariables: Endeavor_data
 
